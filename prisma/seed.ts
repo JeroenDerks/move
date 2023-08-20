@@ -1,46 +1,53 @@
-import prisma from '../lib/prisma'
+import prisma from "../lib/prisma";
 
 async function main() {
   const response = await Promise.all([
     prisma.users.upsert({
-      where: { email: 'rauchg@vercel.com' },
+      where: { id: "514ccebe-c724-4fce-aade-158f03539a72" },
       update: {},
       create: {
-        name: 'Guillermo Rauch',
-        email: 'rauchg@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1576257734810312704/ucxb4lHy_400x400.jpg',
+        name: "Montaga Pallarols",
+        id: "514ccebe-c724-4fce-aade-158f03539a72",
+        tags: {
+          create: {
+            title: "Frontend developer",
+          },
+        },
       },
     }),
     prisma.users.upsert({
-      where: { email: 'lee@vercel.com' },
+      where: { id: "ba2121b7-83ac-417e-bfb7-85c39cf53df8" },
       update: {},
       create: {
-        name: 'Lee Robinson',
-        email: 'lee@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1587647097670467584/adWRdqQ6_400x400.jpg',
+        name: "Mike Smolders",
+        id: "ba2121b7-83ac-417e-bfb7-85c39cf53df8",
+        tags: {
+          create: [{ title: "Managing Director" }, { title: "Amsterdam" }],
+        },
       },
     }),
     await prisma.users.upsert({
-      where: { email: 'stey@vercel.com' },
+      where: { id: "c6732f8d-c068-4a50-a55d-f209fec1db64" },
       update: {},
       create: {
-        name: 'Steven Tey',
-        email: 'stey@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg',
+        name: "Jeroen Derks",
+        id: "c6732f8d-c068-4a50-a55d-f209fec1db64",
+        tags: {
+          create: {
+            title: "Frontend developer",
+          },
+        },
       },
     }),
-  ])
-  console.log(response)
+  ]);
+  console.log(response);
 }
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
