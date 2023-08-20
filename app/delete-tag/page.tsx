@@ -5,21 +5,15 @@ import prisma from "../../lib/prisma";
 import { Heading } from "@/components/Heading";
 
 export default async function AddTagPage({ searchParams }: AddTagPageProps) {
-  const user = await prisma.users.findUnique({
+  const tag = await prisma.tag.findUnique({
     where: {
-      id: searchParams?.user,
+      id: searchParams?.tagId,
     },
   });
 
-  const handleSubmit = async (data: FormData) => {
+  const handleSubmit = async () => {
     "use server";
-
-    const title = data?.get("title")?.valueOf();
-
-    if (!user) return;
-    if (typeof title !== "string" || title.length === 0) return;
-
-    await prisma.tag.create({ data: { title, userId: user.id } });
+    await prisma.tag.delete({ where: { id: tag?.id } });
 
     redirect("/");
   };
@@ -27,14 +21,13 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   return (
     <div>
       <header>
-        <Heading variant="h2">Add new tag for {user?.name}</Heading>
+        <Heading variant="h2">
+          Delete tag with content &quot;{tag?.title}&quot;
+        </Heading>
       </header>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
-        <input name="title" type="text" />
-        <button type="submit" disabled={!user?.id}>
-          Submit
-        </button>
+        <button type="submit">Delete</button>
         <Link href="/">Back</Link>
       </form>
     </div>
