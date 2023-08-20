@@ -1,7 +1,6 @@
 "use client";
 
 import { User } from "@/types/User";
-/* @ts-expect-error */
 import { UilPlus } from "@iconscout/react-unicons";
 
 import { Heading } from "../Heading";
