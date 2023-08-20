@@ -6,11 +6,11 @@ async function main() {
       where: { id: "514ccebe-c724-4fce-aade-158f03539a72" },
       update: {},
       create: {
-        name: "Guillermo Rauch",
+        name: "Montaga Pallarols",
         id: "514ccebe-c724-4fce-aade-158f03539a72",
         tags: {
           create: {
-            title: "Gui's test tag",
+            title: "Frontend developer",
           },
         },
       },
@@ -19,10 +19,10 @@ async function main() {
       where: { id: "ba2121b7-83ac-417e-bfb7-85c39cf53df8" },
       update: {},
       create: {
-        name: "Lee Robinson",
+        name: "Mike Smolders",
         id: "ba2121b7-83ac-417e-bfb7-85c39cf53df8",
         tags: {
-          create: [{ title: "Lee's test tag" }, { title: "Lee's second tag" }],
+          create: [{ title: "Managing Director" }, { title: "Amsterdam" }],
         },
       },
     }),
@@ -30,11 +30,11 @@ async function main() {
       where: { id: "c6732f8d-c068-4a50-a55d-f209fec1db64" },
       update: {},
       create: {
-        name: "Steven Tey",
+        name: "Jeroen Derks",
         id: "c6732f8d-c068-4a50-a55d-f209fec1db64",
         tags: {
           create: {
-            title: "Steevies tag",
+            title: "Frontend developer",
           },
         },
       },

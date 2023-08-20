@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styled from "styled-components";
 
 export const TagContainer = styled.div`
@@ -10,7 +11,9 @@ export const TagContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 0.5rem;
-  margin-bottom: 0.25rem;
   width: max-content;
+`;
+
+export const StyledLink = styled(Link)`
+  margin-left: 0.5rem;
 `;

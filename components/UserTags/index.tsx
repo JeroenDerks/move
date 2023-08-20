@@ -1,11 +1,12 @@
 "use client";
 
 import { User } from "@/types/User";
-import Link from "next/link";
+/* @ts-expect-error */
+import { UilPlus } from "@iconscout/react-unicons";
 
 import { Heading } from "../Heading";
 import { UserTag } from "../UserTag";
-import { Container } from "./styled";
+import { Container, TagsContainer, StyledLink } from "./styled";
 import { Typography } from "../Typography";
 
 export const UserTags = ({ user }: { user: User }) => {
@@ -13,12 +14,17 @@ export const UserTags = ({ user }: { user: User }) => {
     <>
       <Container>
         <Heading variant="h4">{user.name}</Heading>
-        <Link href={`add-tag?user=${user.id}`}>Add tag</Link>
+        <StyledLink href={`add-tag?user=${user.id}`}>
+          <UilPlus />
+          Add tag
+        </StyledLink>
       </Container>
-      {user.tags.map((tag) => (
-        <UserTag key={tag.id} {...{ user, tag }} />
-      ))}
-      {user.tags.length === 0 && <Typography>No tags available</Typography>}
+      <TagsContainer>
+        {user.tags.map((tag) => (
+          <UserTag key={tag.id} {...{ user, tag }} />
+        ))}
+        {user.tags.length === 0 && <Typography>No tags available</Typography>}
+      </TagsContainer>
     </>
   );
 };
