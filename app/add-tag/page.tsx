@@ -1,12 +1,10 @@
 import { redirect } from "next/navigation";
-import { UilArrowLeft } from "@iconscout/react-unicons";
 
 import prisma from "../../lib/prisma";
 import { Heading } from "@/components/Heading";
-import { IconButton } from "@/components/IconButton";
 import { Input } from "@/components/Input";
-import { theme } from "@/theme";
 import { Button } from "@/components/Button";
+import { BackButton } from "@/components/BackButton";
 
 export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   const user = await prisma.users.findUnique({
@@ -29,20 +27,18 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   };
 
   return (
-    <div>
-      <IconButton href="/">
-        <UilArrowLeft size="2rem" color={theme.colors.black} />
-      </IconButton>
+    <>
+      <BackButton />
 
       <Heading variant="h3">Add new tag for {user?.name}</Heading>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
         <Input name="title" />
-        <Button margin="0 0 0 1rem" type="submit" disabled={!user?.id}>
+        <Button margin="0 0 0 0.5rem" type="submit" disabled={!user?.id}>
           Submit
         </Button>
       </form>
-    </div>
+    </>
   );
 }
 

@@ -1,8 +1,10 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import prisma from "../../lib/prisma";
 import { Heading } from "@/components/Heading";
+import { BackButton } from "@/components/BackButton";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
 
 export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   const user = await prisma.users.findUnique({
@@ -26,19 +28,17 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   };
 
   return (
-    <div>
-      <header>
-        <Heading variant="h2">Update tag for {user?.name}</Heading>
-      </header>
+    <>
+      <BackButton />
+      <Heading variant="h2">Edit tag for {user?.name}</Heading>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
-        <input name="title" type="text" defaultValue={tag?.title} />
-        <button type="submit" disabled={!tag?.id}>
+        <Input name="title" defaultValue={tag?.title} />
+        <Button type="submit" margin="0 0 0 0.5rem" disabled={!tag?.id}>
           Submit
-        </button>
-        <Link href="/">Back</Link>
+        </Button>
       </form>
-    </div>
+    </>
   );
 }
 
