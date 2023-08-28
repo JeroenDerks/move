@@ -19,11 +19,12 @@ export default async function Home() {
         Welcome to the tag management assignment by Jeroen Derks
       </Typography>
       <Typography margin="2rem 0 0">
-        Below you will find the names of some of the people involved with this
-        assignment.
+        Below you will find the names of some of the people involved with the
+        job application.
       </Typography>
       <Typography margin="0 0 2rem">
-        You can add, edit and delete tags to them.
+        Each person can be assigned tags while you can also edit and delete
+        existing tags.
       </Typography>
       <Suspense fallback={<Typography>Loading...</Typography>}>
         {/* @ts-expect-error Async Server Component */}
