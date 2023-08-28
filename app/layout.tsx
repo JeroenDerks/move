@@ -1,6 +1,7 @@
+import StyledComponentsRegistry from "@/lib/registery";
 import { PageLayout } from "@/components/PageLayout";
 import StylingThemeProvider from "./theme-provider";
-import StyledComponentsRegistry from "@/lib/registery";
+import { theme } from "@/theme";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ background: theme.colors.grey, margin: 0 }}>
         <StyledComponentsRegistry>
           <StylingThemeProvider>
             <PageLayout>{children}</PageLayout>

@@ -8,4 +8,4 @@ export const Typography = ({
 }: {
   children: React.ReactNode;
   margin?: string;
-}) => <StyledTypography {...[margin]}>{children}</StyledTypography>;
+}) => <StyledTypography {...{ margin }}>{children}</StyledTypography>;

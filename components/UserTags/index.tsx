@@ -7,6 +7,7 @@ import { Heading } from "../Heading";
 import { UserTag } from "../UserTag";
 import { Container, TagsContainer, StyledLink } from "./styled";
 import { Typography } from "../Typography";
+import { theme } from "@/theme";
 
 export const UserTags = ({ user }: { user: User }) => {
   return (
@@ -14,8 +15,7 @@ export const UserTags = ({ user }: { user: User }) => {
       <Container>
         <Heading variant="h4">{user.name}</Heading>
         <StyledLink href={`add-tag?user=${user.id}`}>
-          <UilPlus />
-          Add tag
+          <UilPlus size="1rem" color={theme.colors.black} />
         </StyledLink>
       </Container>
       <TagsContainer>

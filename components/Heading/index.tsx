@@ -7,7 +7,8 @@ export const Heading = ({ variant, children }: HeadingProps) => {
   if (variant === "h2") return <H2>{children}</H2>;
   if (variant === "h3") return <H3>{children}</H3>;
   if (variant === "h4") return <H4>{children}</H4>;
-  return <></>;
+
+  return null;
 };
 
 type HeadingProps = {

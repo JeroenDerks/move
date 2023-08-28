@@ -26,15 +26,14 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
 
   return (
     <div>
-      <Heading variant="h2">Add new tag for {user?.name}</Heading>
-
+      <Link href="/">Back</Link>
+      <Heading variant="h3">Add new tag for {user?.name}</Heading>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
         <input name="title" type="text" />
         <button type="submit" disabled={!user?.id}>
           Submit
         </button>
-        <Link href="/">Back</Link>
       </form>
     </div>
   );
