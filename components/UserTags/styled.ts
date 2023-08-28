@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -12,15 +11,4 @@ export const TagsContainer = styled.div`
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 1rem;
-`;
-
-export const StyledLink = styled(Link)`
-  background: ${({ theme }) => theme.colors.yellow};
-  color: ${({ theme }) => theme.colors.black};
-  display: flex;
-  border-radius: 50%;
-  padding: 0.5rem;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
 `;

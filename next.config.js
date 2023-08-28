@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["pbs.twimg.com"],
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;
