@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "../Button";
+import { theme } from "@/theme";
 
 export const ConfirmButton = ({ children }: { children: React.ReactNode }) => {
   const [confirm, setConfirm] = useState(false);
@@ -9,7 +10,7 @@ export const ConfirmButton = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {confirm ? (
-        <Button type="submit" background="red">
+        <Button type="submit" background={theme.colors.red}>
           Sure?
         </Button>
       ) : (

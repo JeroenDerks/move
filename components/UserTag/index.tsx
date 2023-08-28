@@ -14,10 +14,10 @@ export const UserTag = ({ user, tag }: { user: User; tag: Tag }) => {
     <TagContainer>
       <NoWrapTypography>{tag.title}</NoWrapTypography>
       <Link href={`/edit-tag?tagId=${tag.id}&userId=${user.id}`}>
-        <UilPen color={theme.colors.purple} size="1.125rem" />
+        <UilPen color={theme.colors.black} size="1.125rem" />
       </Link>
       <Link href={`/delete-tag?tagId=${tag.id}`}>
-        <UilTrash color={theme.colors.purple} size="1.125rem" />
+        <UilTrash color={theme.colors.black} size="1.125rem" />
       </Link>
     </TagContainer>
   );

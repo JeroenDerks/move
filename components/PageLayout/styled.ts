@@ -5,10 +5,14 @@ export const Wrapper = styled.div`
   padding: 3rem 2rem;
   display: flex;
   justify-content: center;
-  height: 100%;
+
+  @media screen and (max-width: 720px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 export const Container = styled.div`
   max-width: 1200px;
   width: 100%;
+  min-height: 80vh;
 `;

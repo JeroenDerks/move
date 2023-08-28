@@ -5,6 +5,7 @@ import { Heading } from "@/components/Heading";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { BackButton } from "@/components/BackButton";
+import { Typography } from "@/components/Typography";
 
 export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   const user = await prisma.users.findUnique({
@@ -30,7 +31,8 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     <>
       <BackButton />
 
-      <Heading variant="h3">Add new tag for {user?.name}</Heading>
+      <Heading variant="h3">Add tag</Heading>
+      <Typography margin="0 0 2rem">Add a new tag for {user?.name}</Typography>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
         <Input name="title" />
