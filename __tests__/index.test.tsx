@@ -2,33 +2,23 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ConfirmButton } from "@/components/ConfirmButton";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/theme";
-import "@testing-library/jest-dom";
+
+const renderWithTheme = (component: React.ReactNode) =>
+  render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
 
 describe("Confirm button", () => {
   it("renders a button", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ConfirmButton>Delete</ConfirmButton>
-      </ThemeProvider>
-    );
+    renderWithTheme(<ConfirmButton>Delete</ConfirmButton>);
 
-    const button = screen.getByRole("button", {
-      name: /Delete/i,
-    });
+    const button = screen.getByRole("button", { name: /Delete/i });
 
-    expect(button).toBeInTheDocument();
+    expect(button.innerHTML).toEqual("Delete");
   });
 
   it("renders a confirm state onces the button is pressed", async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ConfirmButton>Delete</ConfirmButton>
-      </ThemeProvider>
-    );
+    renderWithTheme(<ConfirmButton>Delete</ConfirmButton>);
 
-    const button = screen.getByRole("button", {
-      name: /Delete/i,
-    });
+    const button = screen.getByRole("button", { name: /Delete/i });
 
     expect(button.innerHTML).not.toEqual("Sure?");
     expect(button.innerHTML).toEqual("Delete");

@@ -1,3 +1,5 @@
+"use server";
+
 import { redirect } from "next/navigation";
 
 import prisma from "../../lib/prisma";
@@ -17,8 +19,6 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   const body = user ? `Add a new tag for ${user.name}` : "User not found";
 
   const handleSubmit = async (data: FormData) => {
-    "use server";
-
     const title = data?.get("title")?.valueOf();
 
     if (!user) return;
