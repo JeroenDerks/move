@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma";
-import { Container } from "./styled";
 import { UserTags } from "../UserTags";
 
 export default async function Table({
@@ -13,11 +12,7 @@ export default async function Table({
     },
   });
 
-  return (
-    <Container>
-      {users.map((user) => (
-        <UserTags key={user.id} {...{ showAddModal, user }} />
-      ))}
-    </Container>
-  );
+  return users.map((user) => (
+    <UserTags key={user.id} {...{ showAddModal, user }} />
+  ));
 }

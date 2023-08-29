@@ -14,6 +14,8 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     },
   });
 
+  const body = user ? `Add a new tag for ${user.name}` : "User not found";
+
   const handleSubmit = async (data: FormData) => {
     "use server";
 
@@ -22,7 +24,7 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     if (!user) return;
     if (typeof title !== "string" || title.length === 0) return;
 
-    await prisma.tag.create({ data: { title, userId: user.id } });
+    await prisma.tag.create({ data: { title, userId: user?.id } });
 
     redirect("/");
   };
@@ -30,13 +32,16 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   return (
     <>
       <BackButton />
-
       <Heading variant="h3">Add tag</Heading>
-      <Typography margin="0 0 2rem">Add a new tag for {user?.name}</Typography>
+      <Typography margin="0 0 2rem">{body}</Typography>
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
         <Input name="title" />
-        <Button margin="0 0 0 0.5rem" type="submit" disabled={!user?.id}>
+        <Button
+          margin="0 0 0 0.5rem"
+          type="submit"
+          disabled={Boolean(user?.id) === false}
+        >
           Submit
         </Button>
       </form>

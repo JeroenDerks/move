@@ -8,9 +8,8 @@ import { Typography } from "@/components/Typography";
 
 export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   const tag = await prisma.tag.findUnique({
-    where: {
-      id: searchParams?.tagId,
-    },
+    where: { id: searchParams?.tagId },
+    include: { user: true },
   });
 
   const handleSubmit = async () => {
@@ -24,11 +23,14 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     <>
       <BackButton />
       <Heading variant="h2">Delete tag</Heading>
-      <Typography margin="0 0 2rem">
-        Are you sure you want to delete a tag with content:{" "}
-        <i>&quot;{tag?.title}&quot;</i>
-      </Typography>
-
+      {tag ? (
+        <Typography margin="0 0 2rem">
+          Are you sure you want to delete a tag with content:{" "}
+          <i>&quot;{tag?.title}&quot;</i> for {tag.user.name}?
+        </Typography>
+      ) : (
+        <Typography margin="0 0 2rem">Tag not found</Typography>
+      )}
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
         <ConfirmButton>Delete</ConfirmButton>
