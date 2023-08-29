@@ -14,6 +14,7 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
   });
 
   const tag = user?.tags.find((tag) => tag.id === searchParams?.tagId);
+  const defaultValue = tag?.title;
 
   const handleSubmit = async (data: FormData) => {
     "use server";
@@ -23,7 +24,7 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     if (!tag) return;
     if (typeof title !== "string" || title.length === 0) return;
 
-    await prisma.tag.update({ where: { id: tag.id }, data: { title } });
+    await prisma.tag.update({ where: { id: tag?.id }, data: { title } });
 
     redirect("/");
   };
@@ -32,12 +33,15 @@ export default async function AddTagPage({ searchParams }: AddTagPageProps) {
     <>
       <BackButton />
       <Heading variant="h3">Edit tag</Heading>
-      <Typography margin="0 0 2rem">Update tag for {user?.name}</Typography>
-
+      {user ? (
+        <Typography margin="0 0 2rem">Update tag for {user?.name}</Typography>
+      ) : (
+        <Typography margin="0 0 2rem">User not found</Typography>
+      )}
       {/* @ts-expect-error */}
       <form action={handleSubmit}>
-        <Input name="title" defaultValue={tag?.title} />
-        <Button type="submit" margin="0 0 0 0.5rem" disabled={!tag?.id}>
+        <Input name="title" defaultValue={defaultValue} />
+        <Button type="submit" margin="0 0 0 0.5rem" disabled={!tag || !user}>
           Submit
         </Button>
       </form>
